@@ -1,0 +1,24 @@
+pluginManagement {
+    repositories {
+        maven {
+            url 'https://maven.aliyun.com/repository/gradle-plugin'
+        }
+    }
+}
+rootProject.name = 'spring-boot-user'
+
+include 'common-base'
+include 'common-user'
+include 'common-account'
+include 'common-dsl'
+include 'service-user'
+include 'utils-extension'
+include 'utils-safe-command'
+
+project(':common-base').projectDir = new File(settingsDir, './modules/common/base')
+project(':common-user').projectDir = new File(settingsDir, './modules/common/user')
+project(':common-account').projectDir = new File(settingsDir, './modules/common/account')
+project(':common-dsl').projectDir = new File(settingsDir, './modules/common/dsl')
+project(':service-user').projectDir = new File(settingsDir, './modules/service/user')
+project(':utils-extension').projectDir = new File(settingsDir, './modules/utils/extension')
+project(':utils-safe-command').projectDir = new File(settingsDir, './modules/utils/safe-command')

@@ -1,0 +1,21 @@
+[submodule "modules/common/base"]
+	path = modules/common/base
+	url = ../common-base
+[submodule "modules/common/user"]
+	path = modules/common/user
+	url = ../common-user
+[submodule "modules/service/user"]
+	path = modules/service/user
+	url = ../service-user
+[submodule "modules/utils/extension"]
+	path = modules/utils/extension
+	url = ../utils-extension
+[submodule "modules/utils/safe-command"]
+	path = modules/utils/safe-command
+	url = ../utils-safe-command
+[submodule "modules/common/account"]
+	path = modules/common/account
+	url = ../common-account
+[submodule "modules/common/dsl"]
+	path = modules/common/dsl
+	url = ../common-dsl

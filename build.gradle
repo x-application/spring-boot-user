@@ -1,0 +1,86 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.30'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.3.30'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'x.app'
+version = '1.0.0'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('springBootAdminVersion', '2.1.4')
+    set('springCloudServicesVersion', '2.1.2.RELEASE')
+    set('springCloudVersion', 'Greenwich.SR1')
+    set('axonVersion', '4.1.1')
+}
+
+dependencies {
+    /**
+     * SpringBoot's Dependencies
+     */
+//    implementation 'org.springframework.boot:spring-boot-starter-amqp'    //暂时用不到,以后用得到
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    /**
+     * SpringBootAdmin's Dependencies
+     */
+//    implementation 'de.codecentric:spring-boot-admin-starter-client'      //SpringCloudAdmin组件以后在用
+    /**
+     * SpringCloud's Dependencies
+     */
+//    implementation 'io.pivotal.spring.cloud:spring-cloud-services-starter-config-client'  //SpringCloud组件以后在用
+//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client' //SpringCloud组件以后在用
+    /**
+     * Axon's Dependencies
+     */
+    implementation "org.axonframework:axon-spring-boot-starter:${axonVersion}"
+    /**
+     * Kotlin's Dependencies
+     */
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+
+    /**
+     * Project's Dependencies
+     */
+    implementation project(':common-base')
+    implementation project(':common-user')
+    implementation project(':common-account')
+    implementation project(':common-dsl')
+    implementation project(':service-user')
+    implementation project(':utils-extension')
+    implementation project(':utils-safe-command')
+
+    /**
+     * Test's Dependencies
+     */
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
+        mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:${springCloudServicesVersion}"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+compileKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '1.8'
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '1.8'
+    }
+}

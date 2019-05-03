@@ -32,7 +32,7 @@ class UserController {
     @PostMapping("/")
     fun create(@RequestBody body: CreateUserReq): ResponseEntity<Any> {
         val userId = commonService.generateIdentifier()
-        (CreateUserCommand(userId = userId, password = body.password) sendTo commandGateway).run {
+        (CreateUserCommand(userId = userId, accountType = body.accountType, password = body.password) sendTo commandGateway).run {
             this.exception?.run { throw this }
             return ResponseEntity.created(URI("user/${this.userId}")).build()
         }
